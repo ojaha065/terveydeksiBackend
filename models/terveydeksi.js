@@ -4,9 +4,11 @@ const mysql = require("mysql");
 
 // Let's parse the Azure MySQL connection string
 const connectionString = process.env.MYSQLCONNSTR_localdb.split(";");
+const host = connectionString[1].split("=")[1].split(":");
 
 const connection = mysql.createConnection({
-    host: connectionString[1].split("=")[1],
+    host: host[0],
+    port: host[1],
     user: connectionString[2].split("=")[1],
     password: connectionString[3].split("=")[1],
     database: "terveydeksi"
