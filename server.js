@@ -19,9 +19,18 @@ server.get("/",(req,res) => {
     });
 });
 server.get("/yritykset",(req,res) => {
-    terveydeksi.haeYritykset((data) => {
-        res.status(200);
-        res.send(data);
+    terveydeksi.haeYritykset((error,data) => {
+        if(!error){
+            res.status(200);
+            res.send(data);
+        }
+        else{
+            console.error(error);
+            res.status(500);
+            res.send({
+                reason: 0 // Määrittämätön virhe tietokantayhteydessä.
+            });
+        }
     });
 });
 

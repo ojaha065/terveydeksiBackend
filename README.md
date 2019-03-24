@@ -8,6 +8,7 @@ Url: https://terveydeksi.azurewebsites.net/
 |--------------|------------|:-------------:|----------------------|
 | GET          | /          | 200           | message: _string_    |
 | GET          | /yritykset | 200           | yritys[]             |
+|              |            | 500           | reason: number
 
 ### Tietotyypit
 ```javascript
@@ -27,3 +28,5 @@ yritys = {
   email: string
 };
 ```
+### Virhekoodit (reason)
+* 0: Määrittämätön virhe tietokantayhteydessä
