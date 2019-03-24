@@ -4,6 +4,6 @@ Url: https://terveydeksi.azurewebsites.net/
 **HTTPS only!**
 
 ## API
-| Route | Response code | Response body (JSON) |
-|-------|---------------|----------------------|
-| /     | 200           | message: _string_    |
+| Request type | Route | Response code | Response body (JSON) |
+|--------------|-------|:-------------:|----------------------|
+| GET          | /     | 200           | message: _string_    |
