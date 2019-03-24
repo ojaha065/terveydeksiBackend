@@ -2,17 +2,26 @@
 
 /*
     Jani Haiko, 2019
+    https://github.com/ojaha065/terveydeksiBackend
 */
 
 const restify = require("restify");
 
 const server = restify.createServer();
 
+const terveydeksi = require("./models/terveydeksi.js");
+
 // Routes
 server.get("/",(req,res) => {
     res.status(200);
     res.send({
         message: "Nothing to see here."
+    });
+});
+server.get("/yritykset",(req,res) => {
+    terveydeksi.haeYritykset((data) => {
+        res.status(200);
+        res.send(data);
     });
 });
 
