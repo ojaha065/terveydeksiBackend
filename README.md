@@ -10,7 +10,7 @@ Url: https://terveydeksi.azurewebsites.net/
 | GET          | /yritykset | 200           | yritys[]             |
 |              |            | 500           | reason: number
 
-### Tietotyypit
+### Data types
 ```javascript
 // chat- ja ajanvaraus ovat aina 1 tai 0 (ajattele True ja False)
 yritys = {
@@ -28,5 +28,5 @@ yritys = {
   email: string
 };
 ```
-### Virhekoodit (reason)
+### Error codes (reason)
 * 0: Määrittämätön virhe tietokantayhteydessä

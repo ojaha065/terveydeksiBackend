@@ -17,6 +17,8 @@ connection.connect();
 
 module.exports = {
     haeYritykset: (callback) => {
-        connection.query("SELECT * FROM yritykset",callback(error,result));
+        connection.query("SELECT * FROM yritykset",(error,data) => {
+            callback(error,data);
+        });
     }
 };
