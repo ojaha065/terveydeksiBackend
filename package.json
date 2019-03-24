@@ -9,6 +9,9 @@
   },
   "author": "Jani Haiko",
   "license": "MIT",
+  "engines": {
+    "node": "10.14.1"
+  },
   "dependencies": {
     "restify": "^8.2.0"
   }
