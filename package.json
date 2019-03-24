@@ -1,0 +1,15 @@
+{
+  "name": "terveydeksi_backend",
+  "version": "1.0.0",
+  "description": "A very simple REST backend for a school project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jani Haiko",
+  "license": "MIT",
+  "dependencies": {
+    "restify": "^8.2.0"
+  }
+}
