@@ -13,8 +13,16 @@ const terveydeksi = require("./models/terveydeksi.js");
 
 // Allow CORS
 server.use((req,res,next) => {
-    res.header("Access-Control-Allow-Origin",req.header("origin"));
-    return next();
+    if(req.header("origin")){
+        res.header("Access-Control-Allow-Origin",req.header("origin"));
+        return next();
+    }
+    else{
+        res.status(400);
+        res.send({
+            reason: 1 // Pyyntö ei sisältänyt tarvittavaa otsaketta
+        });
+    }
 });
 
 // Routes
