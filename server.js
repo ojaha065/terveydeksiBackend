@@ -11,6 +11,11 @@ const server = restify.createServer();
 
 const terveydeksi = require("./models/terveydeksi.js");
 
+// Allow CORS
+server.use((req,res,next) => {
+    res.header("Access-Control-Allow-Origin",req.get("origin"));
+});
+
 // Routes
 server.get("/",(req,res) => {
     res.status(200);
