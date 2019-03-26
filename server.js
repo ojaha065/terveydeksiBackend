@@ -14,6 +14,7 @@ const terveydeksi = require("./models/terveydeksi.js");
 // Allow CORS
 server.use((req,res,next) => {
     res.header("Access-Control-Allow-Origin",req.header("origin"));
+    return next();
 });
 
 // Routes
