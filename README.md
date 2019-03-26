@@ -6,6 +6,7 @@ Url: https://terveydeksi.azurewebsites.net/
 ## API
 | Request type | Route      | Response code | Response body (JSON) |
 |--------------|------------|:-------------:|----------------------|
+| _any_        | _any_      | 400           | reason: number       |
 | GET          | /          | 200           | message: _string_    |
 | GET          | /yritykset | 200           | yritys[]             |
 |              |            | 500           | reason: number
@@ -30,3 +31,4 @@ yritys = {
 ```
 ### Error codes (reason)
 * 0: Määrittämätön virhe tietokantayhteydessä
+* 1: Pyyntö ei sisältänyt tarvittavaa otsaketta
