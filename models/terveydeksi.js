@@ -25,7 +25,7 @@ module.exports = {
     login: (username,password,callback) => {
         connection.query("SELECT password FROM users WHERE BINARY username = ?",[username],(error,data) => {
             let hash = crypto.createHash("sha512").update(password).digest("hex");
-            console.log(data.password);
+            console.log(data);
             console.log(hash);
             if(data && data.password){
                 if(data.password === hash){
