@@ -4,12 +4,14 @@ Url: https://terveydeksi.azurewebsites.net/
 **HTTPS only!**
 
 ## API
-| Request type | Route      | Response code | Response body (JSON) |
-|--------------|------------|:-------------:|----------------------|
-| _any_        | _any_      | 400           | reason: number       |
-| GET          | /          | 200           | message: _string_    |
-| GET          | /yritykset | 200           | yritys[]             |
-|              |            | 500           | reason: number
+| Request type | Route      | Request body       |Response code(s)| Response body (JSON) |
+|--------------|------------|--------------------|:--------------:|----------------------|
+| _any_        | _any_      | _n/a_              | 400            | reason: _number_     |
+| GET          | /          | _n/a_              | 200            | message: _string_    |
+| GET          | /yritykset | _n/a_              | 200            | _yritys[]_           |
+|              |            | _n/a_              | 500            | reason: _number_     |
+| POST         | /login     | username, password | 200            | _loginStatus_        |
+|              |            |                    | 400, 500       | reason: _number_     |
 
 ### Data types
 ```javascript
@@ -28,6 +30,11 @@ yritys = {
   puhelinnumero: string
   email: string
 };
+
+loginStatus = {
+  status: string,
+  statusCode: number // 0 = OK, 1 = wrong user/pass
+}
 ```
 ### Error codes (reason)
 * 0: Määrittämätön virhe tietokantayhteydessä

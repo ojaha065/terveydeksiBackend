@@ -55,9 +55,9 @@ server.get("/yritykset",(req,res) => {
 
 server.post("/login",(req,res) => {
     if(req.body && req.body.username && req.body.password){
-        terveydeksi.login(req.body.username,req.body.password,(error,data) => {
+        terveydeksi.login(req.body.username,req.body.password,(error,status) => {
             if(!error){
-                if(data){
+                if(status){
                     res.status(200);
                     res.send({
                         status: "OK",
