@@ -1,5 +1,6 @@
 "use strict";
 
+const crypto = require("crypto");
 const mysql = require("mysql");
 
 // Let's parse the Azure MySQL connection string
@@ -18,7 +19,23 @@ connection.connect();
 module.exports = {
     haeYritykset: (callback) => {
         connection.query("SELECT * FROM yritykset",(error,data) => {
-            callback(error,data);
+            return callback(error,data);
+        });
+    },
+    login: (username,password,callback) => {
+        connection.query("SELECT password FROM users WHERE BINARY username = ?",[username],(error,data) => {
+            let hash = crypto.createHash("sha512").update(password).digest("hex");
+            if(data[0]){
+                if(data[0] === hash){
+                    return callback(error,true);
+                }
+                else{
+                    return callback(error,false);
+                }
+            }
+            else{
+                return callback(error,null);
+            }
         });
     }
 };

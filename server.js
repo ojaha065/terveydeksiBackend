@@ -25,6 +25,9 @@ server.use((req,res,next) => {
     }
 });
 
+// Enable bodyParser
+server.use(restify.plugins.bodyParser());
+
 // Routes
 server.get("/",(req,res) => {
     res.status(200);
@@ -46,6 +49,42 @@ server.get("/yritykset",(req,res) => {
             });
         }
     });
+});
+
+server.post("/login",(req,res) => {
+    if(req.body.username && req.body.password){
+        terveydeksi.login(req.body.username,req.body.password,(error,data) => {
+            if(!error){
+                if(data){
+                    res.status(200);
+                    res.send({
+                        status: "OK",
+                        statusCode: 0
+                    });
+                }
+                else{
+                    res.status(200);
+                    res.send({
+                        status: "Wrong username or password",
+                        statusCode: 1
+                    });
+                }
+            }
+            else{
+                console.error(error);
+                res.status(500);
+                res.send({
+                    reason: 0 // Määrittämätön virhe tietokantayhteydessä.
+                });
+            }
+        });
+    }
+    else{
+        res.status(400);
+        res.send({
+            reason: 2 // Pyyntö ei sisältänyt tarvittavia kenttiä
+        });
+    }
 });
 
 // Starting the server

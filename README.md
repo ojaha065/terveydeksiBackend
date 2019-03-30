@@ -32,3 +32,4 @@ yritys = {
 ### Error codes (reason)
 * 0: Määrittämätön virhe tietokantayhteydessä
 * 1: Pyyntö ei sisältänyt tarvittavaa otsaketta
+* 2: Pyyntö ei sisältänyt tarvittavia kenttiä
