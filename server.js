@@ -26,7 +26,9 @@ server.use((req,res,next) => {
 });
 
 // Enable bodyParser
-server.use(restify.plugins.bodyParser());
+server.use(restify.plugins.bodyParser({
+    mapParams: true
+}));
 
 // Routes
 server.get("/",(req,res) => {
