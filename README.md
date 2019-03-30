@@ -34,7 +34,7 @@ yritys = {
 loginStatus = {
   status: string,
   statusCode: number // 0 = OK, 1 = wrong user/pass
-}
+};
 ```
 ### Error codes (reason)
 * 0: Määrittämätön virhe tietokantayhteydessä
