@@ -54,7 +54,7 @@ server.post("/login",(req,res) => {
                 else{
                     res.status(200);
                     res.send({
-                        status: "Wrong username or password",
+                        status: "Virheellinen käyttäjätunnus tai salasana",
                         statusCode: 1
                     });
                 }

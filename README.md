@@ -6,7 +6,6 @@ Url: https://terveydeksi.azurewebsites.net/
 ## API
 | Request type | Route      | Request body       |Response code(s)| Response body (JSON) |
 |--------------|------------|--------------------|:--------------:|----------------------|
-| _any_        | _any_      | _n/a_              | 400            | reason: _number_     |
 | GET          | /          | _n/a_              | 200            | message: _string_    |
 | GET          | /yritykset | _n/a_              | 200            | _yritys[]_           |
 |              |            | _n/a_              | 500            | reason: _number_     |
@@ -40,5 +39,5 @@ loginStatus = {
 ```
 ### Error codes (reason)
 * 0: Määrittämätön virhe tietokantayhteydessä
-* 1: Pyyntö ei sisältänyt tarvittavaa otsaketta
+* 1: _Ei käytössä_ (enää)
 * 2: Pyyntö ei sisältänyt tarvittavia kenttiä
