@@ -28,7 +28,8 @@ yritys = {
   lat: number,
   lon: number,
   puhelinnumero: string
-  email: string
+  email: string,
+  tyyppi: string // Esim. "Yleislääkäripalvelut" tai "Hammaslääkäripalvelut"
 };
 
 loginStatus = {
