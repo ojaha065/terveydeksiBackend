@@ -11,21 +11,6 @@ const server = restify.createServer();
 
 const terveydeksi = require("./models/terveydeksi.js");
 
-// Allow CORS
-server.use((req,res,next) => {
-    if(req.header("origin")){
-        res.header("Access-Control-Allow-Origin","*");
-        res.header("Access-Control-Allow-Methods",req.method);
-        return next();
-    }
-    else{
-        res.status(400);
-        res.send({
-            reason: 1 // Pyyntö ei sisältänyt tarvittavaa otsaketta
-        });
-    }
-});
-
 // Enable bodyParser
 server.use(restify.plugins.bodyParser({
     mapParams: true
