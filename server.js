@@ -55,13 +55,14 @@ server.get("/yritykset",(req,res) => {
 
 server.post("/login",(req,res) => {
     if(req.body && req.body.username && req.body.password){
-        terveydeksi.login(req.body.username,req.body.password,(error,status) => {
+        terveydeksi.login(req.body.username,req.body.password,(error,status,token) => {
             if(!error){
                 if(status){
                     res.status(200);
                     res.send({
                         status: "OK",
-                        statusCode: 0
+                        statusCode: 0,
+                        token: token
                     });
                 }
                 else{

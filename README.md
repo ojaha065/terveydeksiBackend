@@ -34,7 +34,8 @@ yritys = {
 
 loginStatus = {
   status: string,
-  statusCode: number // 0 = OK, 1 = wrong user/pass
+  statusCode: number, // 0 = OK, 1 = wrong user/pass
+  token: string // JSON Web Token
 };
 ```
 ### Error codes (reason)
