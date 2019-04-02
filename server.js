@@ -15,6 +15,7 @@ const terveydeksi = require("./models/terveydeksi.js");
 server.use((req,res,next) => {
     if(req.header("origin")){
         res.header("Access-Control-Allow-Origin",req.header("origin"));
+        res.header("Access-Control-Allow-Methods",req.method);
         return next();
     }
     else{
