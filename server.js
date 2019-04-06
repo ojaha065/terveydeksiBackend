@@ -42,25 +42,26 @@ server.get("/yritykset",(req,res) => {
     });
 });
 server.get("/omatTiedot",(req,res) => {
-    if(req.query.id && !isNaN(req.query.id)){
-        terveydeksi.haeOmatTiedot(req.query.id,(error,data) => {
+    if(req.query.token){
+        terveydeksi.haeOmatTiedot(req.query.token,(error,data) => {
             if(!error){
                 res.status(200);
                 res.send(data);
             }
             else{
-                console.error(error);
-                res.status(500);
-                res.send({
-                    reason: 0 // Määrittämätön virhe tietokantayhteydessä
-                });
+                if(error === "Invalid token"){
+                    res.status(403);
+                    res.send({
+                        reason: 3 // Sinulla ei ole tarvittavaa käyttöoikeutta käyttää tätä ominaisuutta
+                    });
+                }
             }
         });
     }
     else{
         res.status(400);
         res.send({
-            reason: 2 // Pyyntö ei sisältänyt tarvittavia kenttiä
+            reason: 3 // Pyyntö ei sisältänyt tarvittavia kenttiä
         });
     }
 });

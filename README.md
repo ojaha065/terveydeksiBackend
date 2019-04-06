@@ -41,3 +41,4 @@ loginStatus = {
 * 0: Määrittämätön virhe tietokantayhteydessä
 * 1: _Not in use_ (anymore)
 * 2: Pyyntö ei sisältänyt tarvittavia kenttiä
+* 3: Sinulla ei ole tarvittavaa käyttöoikeutta käyttää tätä ominaisuutta

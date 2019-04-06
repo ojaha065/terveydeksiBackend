@@ -29,7 +29,7 @@ module.exports = {
             if(data && data[0] && data[0].password){
                 if(data[0].password === hash){
                     // Password correct
-                    let token = jwt.sign({
+                    const token = jwt.sign({
                         userID: data[0].id,
                         username: data[0].username
                     },process.env.JWT_SECRET,{
@@ -47,9 +47,19 @@ module.exports = {
             }
         });
     },
-    haeOmatTiedot: (id,callback) => {
-        connection.query("SELECT etunimi,sukunimi,katuosoite,postinumero,postitoimipaikka,puhelinnumero,email FROM users WHERE id = ?",[id],(error,data) => {
-            return callback(error,data);
+    haeOmatTiedot: (token,callback) => {
+        jwt.verify(token,process.env.JWT_SECRET,{
+            issuer: "Terveydeksi!",
+            maxAge: "30 days"
+        },(error,decoded) => {
+            if(!error){
+                connection.query("SELECT etunimi,sukunimi,katuosoite,postinumero,postitoimipaikka,puhelinnumero,email FROM users WHERE id = ?",[decoded.userID],(error,data) => {
+                    return callback(error,data);
+                });
+            }
+            else{
+                callback("Invalid token",null);
+            }
         });
     }
 };
