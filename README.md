@@ -4,11 +4,13 @@ Url: https://terveydeksi.azurewebsites.net/
 **HTTPS only!**
 
 ## API
-| Request type | Route      | Request body       |Response code(s)| Response body (JSON) |
+| Request type | Route      | Request body/query |Response code(s)| Response body (JSON) |
 |--------------|------------|--------------------|:--------------:|----------------------|
-| GET          | /          | _n/a_              | 200            | message: _string_    |
-| GET          | /yritykset | _n/a_              | 200            | _yritys[]_           |
-|              |            | _n/a_              | 500            | reason: _number_     |
+| GET          | /          | -                  | 200            | message: _string_    |
+| GET          | /yritykset | -                  | 200            | _yritys[]_           |
+|              |            | -                  | 500            | reason: _number_     |
+| GET          | /omatTiedot| token              | 200            | _user_           |
+|              |            |                    | 403,500        | reason: _number_     |
 | POST         | /login     | username, password | 200            | _loginStatus_        |
 |              |            |                    | 400, 500       | reason: _number_     |
 
@@ -35,6 +37,16 @@ loginStatus = {
   status: string,
   statusCode: number, // 0 = OK, 1 = wrong user/pass
   token: string // JSON Web Token
+};
+
+user = {
+   etunimi: string,
+  sukunim: string,
+  katuosoite: string,
+  postinumero: string,
+  postitoimipaikka: string,
+  puhelinnumero: string,
+  email: string
 };
 ```
 ### Error codes (reason)
