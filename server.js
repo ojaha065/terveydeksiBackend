@@ -61,7 +61,7 @@ server.get("/omatTiedot",(req,res) => {
     else{
         res.status(400);
         res.send({
-            reason: 3 // Pyyntö ei sisältänyt tarvittavia kenttiä
+            reason: 2 // Pyyntö ei sisältänyt tarvittavia kenttiä
         });
     }
 });
