@@ -39,5 +39,5 @@ loginStatus = {
 ```
 ### Error codes (reason)
 * 0: Määrittämätön virhe tietokantayhteydessä
-* 1: _Ei käytössä_ (enää)
+* 1: _Not in use_ (anymore)
 * 2: Pyyntö ei sisältänyt tarvittavia kenttiä
