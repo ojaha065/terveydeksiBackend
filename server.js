@@ -41,7 +41,7 @@ server.get("/yritykset",(req,res) => {
         }
     });
 });
-server.get("omatTiedot",(req,res) => {
+server.get("/omatTiedot",(req,res) => {
     if(req.query.id && !isNaN(req.query.id)){
         terveydeksi.haeOmatTiedot(req.query.id,(error,data) => {
             if(!error){
