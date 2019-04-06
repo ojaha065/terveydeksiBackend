@@ -11,6 +11,9 @@ const server = restify.createServer();
 
 const terveydeksi = require("./models/terveydeksi.js");
 
+// Enable queryParser
+server.use(restify.plugins.queryParser());
+
 // Enable bodyParser
 server.use(restify.plugins.bodyParser({
     mapParams: true
@@ -38,6 +41,29 @@ server.get("/yritykset",(req,res) => {
         }
     });
 });
+server.get("omatTiedot",(req,res) => {
+    if(req.query.id && !isNaN(req.query.id)){
+        terveydeksi.haeOmatTiedot(req.query.id,(error,data) => {
+            if(!error){
+                res.status(200);
+                res.send(data);
+            }
+            else{
+                console.error(error);
+                res.status(500);
+                res.send({
+                    reason: 0 // Määrittämätön virhe tietokantayhteydessä
+                });
+            }
+        });
+    }
+    else{
+        res.status(400);
+        res.send({
+            reason: 2 // Pyyntö ei sisältänyt tarvittavia kenttiä
+        });
+    }
+});
 
 server.post("/login",(req,res) => {
     if(req.body && req.body.username && req.body.password){
@@ -63,7 +89,7 @@ server.post("/login",(req,res) => {
                 console.error(error);
                 res.status(500);
                 res.send({
-                    reason: 0 // Määrittämätön virhe tietokantayhteydessä.
+                    reason: 0 // Määrittämätön virhe tietokantayhteydessä
                 });
             }
         });

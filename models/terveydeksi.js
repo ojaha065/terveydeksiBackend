@@ -24,7 +24,7 @@ module.exports = {
         });
     },
     login: (username,password,callback) => {
-        connection.query("SELECT id,username,password FROM users WHERE BINARY username = ?",[username],(error,data) => {
+        connection.query("SELECT id,username,password FROM users WHERE BINARY username = ?;",[username],(error,data) => {
             let hash = crypto.createHash("sha512").update(password).digest("hex");
             if(data && data[0] && data[0].password){
                 if(data[0].password === hash){
@@ -45,6 +45,11 @@ module.exports = {
             else{
                 return callback(error,null);
             }
+        });
+    },
+    haeOmatTiedot: (id,callback) => {
+        connection.query("SELECT etunimi,sukunimi,katuosoite,postinumero,postitoimipaikka,puhelinnumero,email FROM users WHERE id = ?",[id],(error,data) => {
+            return callback(error,data);
         });
     }
 };
