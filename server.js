@@ -103,7 +103,7 @@ server.post("/login",(req,res) => {
     }
 });
 server.post("/tallennaAjanvaraus",(req,res) => {
-    if(req.body && req.body.token && req.body.yritysID && req.body.timestamp){
+    if(req.body && req.body.token && req.body.yritysID && !isNaN(req.body.yritysID) && req.body.timestamp && !isNaN(req.body.timestamp)){
         terveydeksi.tallennaAjanvaraus(req.body.token,req.body.yritysID,req.body.timestamp,(returnCode) => {
             switch(returnCode){
                 case 0:

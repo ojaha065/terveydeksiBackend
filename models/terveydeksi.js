@@ -68,7 +68,7 @@ module.exports = {
             maxAge: "30 days"
         },(error,decoded) => {
             if(!error){
-                connection.query("INSERT INTO ajanvaraukset(userID,yritysID,timestamp) VALUES ?,?,?;",[decoded.userID,yritysID,timestamp],(error) => {
+                connection.query("INSERT INTO ajanvaraukset(userID,yritysID,timestamp) VALUES(?,?,?);",[decoded.userID,yritysID,timestamp],(error) => {
                     if(!error){
                         return callback(1); // OK
                     }
