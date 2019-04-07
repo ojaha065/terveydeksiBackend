@@ -102,6 +102,42 @@ server.post("/login",(req,res) => {
         });
     }
 });
+server.post("/tallennaAjanvaraus",(req,res) => {
+    if(req.body && req.body.token && req.body.yritysID && req.body.timestamp){
+        terveydeksi.tallennaAjanvaraus(req.body.token,req.body.yritysID,req.body.timestamp,(returnCode) => {
+            switch(returnCode){
+                case 0:
+                    res.status(403);
+                    res.send({
+                        reason: 3 // Sinulla ei ole tarvittavaa käyttöoikeutta käyttää tätä ominaisuutta
+                    });
+                    break;
+                case 1:
+                    res.status(201);
+                    res.send();
+                    break;
+                case 2:
+                    res.status(500);
+                    res.send({
+                        reason: 0 // Määrittämätön virhe tietokantayhteydessä
+                    });
+                    break;
+                default:
+                    res.status(500);
+                    res.send({
+                        reason: 4 // Jokin meni nyt pieleen
+                    });
+                    
+            }
+        });
+    }
+    else{
+        res.status(400);
+        res.send({
+            reason: 2 // Pyyntö ei sisältänyt tarvittavia kenttiä
+        });
+    }
+});
 
 // Starting the server
 const port = process.env.PORT || 8000;

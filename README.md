@@ -4,15 +4,18 @@ Url: https://terveydeksi.azurewebsites.net/
 **HTTPS only!**
 
 ## API
-| Request type | Route      | Request body/query |Response code(s)| Response body (JSON) |
-|--------------|------------|--------------------|:--------------:|----------------------|
-| GET          | /          | -                  | 200            | message: _string_    |
-| GET          | /yritykset | -                  | 200            | _yritys[]_           |
-|              |            | -                  | 500            | reason: _number_     |
-| GET          | /omatTiedot| token              | 200            | _user_           |
-|              |            |                    | 403,500        | reason: _number_     |
-| POST         | /login     | username, password | 200            | _loginStatus_        |
-|              |            |                    | 400, 500       | reason: _number_     |
+| Request type | Route               | Request body/query       |Response code(s)| Response body (JSON) |
+|--------------|---------------------|--------------------------|:--------------:|----------------------|
+| GET          | /                   | -                        | 200            | message: _string_    |
+| GET          | /yritykset          | -                        | 200            | _yritys[]_           |
+|              |                     | -                        | 500            | reason: _number_     |
+| GET          | /omatTiedot         | token                    | 200            | _user_           |
+|              |                     |                          | 403, 500       | reason: _number_     |
+| POST         | /login              | username, password       | 200            | _loginStatus_        |
+|              |                     |                          | 400, 500       | reason: _number_     |
+| POST         | /tallennaAjanvaraus | token, _varauksenTiedot_ | 201            | -                    |
+|              |                     |                          | 403, 500       | reason: _number_     |
+varauksenTiedot = yritysID, timestamp
 
 ### Data types
 ```javascript
@@ -40,7 +43,7 @@ loginStatus = {
 };
 
 user = {
-   etunimi: string,
+  etunimi: string,
   sukunim: string,
   katuosoite: string,
   postinumero: string,
@@ -54,3 +57,4 @@ user = {
 * 1: _Not in use_ (anymore)
 * 2: Pyyntö ei sisältänyt tarvittavia kenttiä
 * 3: Sinulla ei ole tarvittavaa käyttöoikeutta käyttää tätä ominaisuutta
+* 4: Jokin meni nyt pieleen _#blameJani_ (This should never happen.)

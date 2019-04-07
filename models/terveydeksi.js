@@ -53,7 +53,7 @@ module.exports = {
             maxAge: "30 days"
         },(error,decoded) => {
             if(!error){
-                connection.query("SELECT etunimi,sukunimi,katuosoite,postinumero,postitoimipaikka,puhelinnumero,email FROM users WHERE id = ?",[decoded.userID],(error,data) => {
+                connection.query("SELECT etunimi,sukunimi,katuosoite,postinumero,postitoimipaikka,puhelinnumero,email FROM users WHERE id = ?;",[decoded.userID],(error,data) => {
                     return callback(error,data);
                 });
             }
@@ -61,5 +61,26 @@ module.exports = {
                 callback("Invalid token",null);
             }
         });
+    },
+    tallennaAjanvaraus: (token,yritysID,timestamp,callback) => {
+        jwt.verify(token,process.env.JWT_SECRET,{
+            issuer: "Terveydeksi!",
+            maxAge: "30 days"
+        },(error,decoded) => {
+            if(!error){
+                connection.query("INSERT INTO ajanvaraukset(userID,yritysID,timestamp) VALUES ?,?,?;",[decoded.userID,yritysID,timestamp],(error) => {
+                    if(!error){
+                        return callback(1); // OK
+                    }
+                    else{
+                        console.error(error);
+                        return callback(2); // Error during the SQL query
+                    }
+                });
+            }
+            else{
+                return callback(0); // Invalid token
+            }
+        })
     }
 };
