@@ -34,7 +34,8 @@ yritys = {
   lon: number,
   puhelinnumero: string
   email: string,
-  tyyppi: string // Esim. "Yleislääkäripalvelut" tai "Hammaslääkäripalvelut"
+  tyyppi: string, // Esim. "Yleislääkäripalvelut" tai "Hammaslääkäripalvelut"
+  kotisivut: string // Tai NULL
 };
 
 loginStatus = {

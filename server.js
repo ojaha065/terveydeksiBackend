@@ -65,6 +65,21 @@ server.get("/omatTiedot",(req,res) => {
         });
     }
 });
+server.get("/ajanvaraukset",(req,res) => {
+    terveydeksi.haeKaikkiAjanvaraukset((data) => {
+        if(data){
+            res.status(200);
+            res.send(data);
+        }
+        else{
+            res.status(500);
+            res.send({
+                reason: 0 // Määrittämätön virhe tietokantayhteydessä.
+            });
+
+        }
+    });
+});
 
 server.post("/login",(req,res) => {
     if(req.body && req.body.username && req.body.password){

@@ -82,5 +82,16 @@ module.exports = {
                 return callback(0); // Invalid token
             }
         })
+    },
+    haeKaikkiAjanvaraukset: (callback) => {
+        connection.query("SELECT * FROM ajanvaraukset;",(error,data) => {
+            if(!error){
+                return callback(data);
+            }
+            else{
+                console.error(error);
+                return callback();
+            }
+        });
     }
 };
